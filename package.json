@@ -1,0 +1,25 @@
+{
+  "name": "ansible-role-docker",
+  "version": "0.3.16",
+  "description": "Ansible Docker role",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchipholRedesign/ansible-role-docker.git"
+  },
+  "keywords": [
+    "ansible",
+    "docker",
+    "docker-compose"
+  ],
+  "author": "SchipholRedesign <https://github.com/SchipholRedesign>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SchipholRedesign/ansible-role-docker/issues"
+  },
+  "homepage": "https://github.com/SchipholRedesign/ansible-role-docker#readme",
+  "dependencies": {}
+}

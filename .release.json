@@ -1,0 +1,35 @@
+{
+    "non-interactive": false,
+    "verbose": true,
+    "force": false,
+    "increment": "patch",
+    "changelogCommand": "git log --pretty=format:'* %s (%h)' [REV_RANGE]",
+    "requireCleanWorkingDir": true,
+    "src": {
+        "commitMessage": "Release %s",
+        "tagName": "v%s",
+        "tagAnnotation": "Release %s"
+    },
+    "dist": {
+        "repo": false
+    },
+    "npm": {
+        "publish": false,
+        "private": true
+    },
+    "github": {
+        "release": true,
+        "releaseName": "Release %s",
+        "tokenRef": "GITHUB_TOKEN"
+    },
+    "prompt": {
+      "src": {
+        "status": true,
+        "commit": true,
+        "tag": true,
+        "push": true,
+        "release": true,
+        "publish": false
+      }
+  }
+}

@@ -1,0 +1,12 @@
+---
+
+docker_engine:
+  docker: True
+
+docker_package_name: docker-latest
+docker_package_version: 1.13.1
+pip_docker_version: 2.5.0
+pip_docker_compose_version: 1.15.0
+
+repository_registry: wilbur-repo.schiphol.nl:5000
+docker_graph_dir: /var/lib/docker

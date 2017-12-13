@@ -1,0 +1,20 @@
+---
+# Standards: 0.2
+galaxy_info:
+  author: ferharty andbbaassssiiee
+  description: Yet another Docker role.
+  company: dockpack
+
+  license: MIT
+
+  min_ansible_version: 2.2.1
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+  galaxy_tags:
+    - docker
+    - system
+    - development
+    - containers

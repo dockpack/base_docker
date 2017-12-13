@@ -1,0 +1,19 @@
+---
+
+- name: start docker
+  systemd:
+    name: docker
+    state: started
+    enabled: True
+    daemon_reload: true
+  become: True
+  when: ansible_connection != 'docker'
+
+- name: restart docker
+  become: True
+  systemd:
+    name: docker
+    state: restarted
+    enabled: True
+    daemon_reload: true
+  when: ansible_connection != 'docker'

@@ -1,0 +1,108 @@
+---
+
+- name: ensure sysctl settings are set for docker
+  when: ansible_connection != 'docker'
+  sysctl:
+    name: "{{ item }}"
+    value: 1
+    state: present
+    reload: True
+    ignoreerrors: True
+  with_items:
+    - net.ipv4.ip_forward
+    - bridge-nf-call-iptables
+    - bridge-nf-call-ip6tables
+  tags:
+    - docker
+
+- name: ensure the docker group is present
+  group:
+    name: docker
+    state: present
+    system: True
+  tags:
+    - docker
+
+- name: test if docker is installed
+  command: docker
+  register: dockerinstalled
+  ignore_errors: True
+  changed_when: False
+
+- name: install python-pip
+  yum:
+    name: python-pip
+    state: present
+
+- name: install docker
+  become: True
+  yum:
+    name: "{{ docker_package_name }}-{{ docker_package_version }}"
+    state: present
+    update_cache: True
+
+- name: create docker environment file
+  template:
+    src: sysconfig/docker
+    dest: /etc/sysconfig/docker
+    force: True
+  when: proxy_env is defined
+
+- name: create service in systemd
+  template:
+    src: docker.service
+    dest: /usr/lib/systemd/system/docker.service
+    force: True
+  register: unit
+  notify:
+    - restart docker
+
+- meta: flush_handlers
+
+- name: ensure /etc/docker exists
+  file:
+    path: /etc/docker
+    state: directory
+
+- name: install daemon options
+  template:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+
+- name: uninstall docker client for python
+  become: True
+  shell: 'pip uninstall -y docker-py || /bin/true'
+  no_log: True
+  ignore_errors: True
+  changed_when: False
+  tags:
+    - skip_ansible_lint
+    - uninstall
+
+- name: install docker client for python
+  pip:
+    name: docker
+    state: present
+    version: "{{ pip_docker_version }}"
+  changed_when: no  # workaround for bug in pip:
+  tags:
+    - python
+
+- name: ensure docker compose is installed
+  pip:
+    name: docker-compose
+    state: present
+    version: "{{ pip_docker_compose_version }}"
+  changed_when: no  # workaround for bug in pip:
+  tags:
+    - docker
+
+- name: add any docker_users to docker group
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: yes
+  when: docker_users is defined
+  with_items: "{{ docker_users }}"
+  tags:
+    - docker

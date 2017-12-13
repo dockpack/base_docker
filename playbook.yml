@@ -1,0 +1,6 @@
+---
+# Standards: 0.2
+- hosts: all
+  roles:
+    - role: epel
+    - role: ansible-role-docker
