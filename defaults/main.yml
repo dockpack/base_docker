@@ -8,5 +8,12 @@ docker_package_version: 1.13.1
 pip_docker_version: 2.5.0
 pip_docker_compose_version: 1.15.0
 
-repository_registry: wilbur-repo.schiphol.nl:5000
+repository_registry: repository:5000
 docker_graph_dir: /var/lib/docker
+
+docker_engine:
+  docker_gpg_key: 58118E89F3A912897C070ADBF76221572C52609D
+  key_server: ha.pool.sks-keyservers.net
+  storagedriver: overlay
+  insecure_registry: 172.30.0.0/16
+  docker_py: True
