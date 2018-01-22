@@ -1,8 +1,5 @@
 ---
 
-docker_engine:
-  docker: True
-
 docker_package_name: docker-latest
 docker_package_version: 1.13.1
 pip_docker_version: 2.5.0
@@ -16,4 +13,3 @@ docker_engine:
   key_server: ha.pool.sks-keyservers.net
   storagedriver: overlay
   insecure_registry: 172.30.0.0/16
-  docker_py: True
