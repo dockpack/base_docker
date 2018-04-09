@@ -1,6 +1,6 @@
 {
   "name": "dockpack.base_docker",
-  "version": "0.3.17",
+  "version": "0.3.21",
   "description": "Ansible Docker role",
   "main": "index.js",
   "scripts": {
