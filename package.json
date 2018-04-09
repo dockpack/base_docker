@@ -1,6 +1,6 @@
 {
-  "name": "ansible-role-docker",
-  "version": "0.3.16",
+  "name": "dockpack.base_docker",
+  "version": "0.3.17",
   "description": "Ansible Docker role",
   "main": "index.js",
   "scripts": {
@@ -15,11 +15,11 @@
     "docker",
     "docker-compose"
   ],
-  "author": "SchipholRedesign <https://github.com/SchipholRedesign>",
+  "author": "Bas Meijer, Ferhat Yildiz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SchipholRedesign/ansible-role-docker/issues"
+    "url": "https://github.com/dockpack/base_docker/issues"
   },
-  "homepage": "https://github.com/SchipholRedesign/ansible-role-docker#readme",
+  "homepage": "https://github.com/dockpack/base_docker",
   "dependencies": {}
 }
