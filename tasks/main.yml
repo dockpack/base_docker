@@ -57,8 +57,6 @@
   notify:
     - restart docker
 
-- meta: flush_handlers
-
 - name: ensure /etc/docker exists
   file:
     path: /etc/docker
