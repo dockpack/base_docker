@@ -33,6 +33,8 @@
   yum:
     name: python-pip
     state: present
+  tags:
+    - pip
 
 - name: install docker
   become: True
