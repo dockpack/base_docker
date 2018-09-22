@@ -1,5 +1,9 @@
-{% if proxy_env.https_proxy is defined %}
-HTTP_PROXY="{{ proxy_env.http_proxy }}"
-HTTPS_PROXY="{{ proxy_env.https_proxy }}"
-NO_PROXY="{{ proxy_env.no_proxy }}"
+{% if docker_http_proxy is defined %}
+http_proxy={{ docker_http_proxy }}
+{% endif %}
+{% if docker_https_proxy is defined %}
+http_proxy={{ docker_https_proxy }}
+{% endif %}
+{% if docker_no_proxy is defined %}
+no_proxy={{ docker_no_proxy }}
 {% endif %}
