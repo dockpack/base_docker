@@ -44,11 +44,40 @@
     update_cache: True
 
 - name: create docker environment file
+  when: docker_http_proxy is defined or docker_https_proxy is defined
   template:
     src: sysconfig/docker
     dest: /etc/sysconfig/docker
+    owner: root
+    group: docker
+    mode: 0644
     force: True
-  when: proxy_env is defined
+  notify:
+    - restart docker
+
+- name: create a systemd drop-in directory for the docker service 
+  file:
+    path: /etc/systemd/system/docker.service.d
+    owner: root
+    group: docker
+    mode: 0755
+    state: directory
+  when: docker_http_proxy is defined or docker_https_proxy is defined
+  tags:
+    - template
+
+- name: create the proxy config for the docker service
+  when: docker_http_proxy is defined or docker_https_proxy is defined
+  template:
+    src: http-proxy.conf
+    dest: /etc/systemd/system/docker.service.d/
+    owner: root
+    group: docker
+    mode: 0644
+  notify:
+    - restart docker
+  tags:
+    - template
 
 - name: create service in systemd
   template:
