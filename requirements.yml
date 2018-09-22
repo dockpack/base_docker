@@ -1,5 +1,0 @@
----
-
-- src: dockpack.base_epel
-  name: epel
-  version: v0.2.9

@@ -1,6 +1,7 @@
 ---
 # Standards: 0.2
 - hosts: all
+  become: false
+
   roles:
-    - role: epel
     - role: base_docker

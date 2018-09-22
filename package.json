@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SchipholRedesign/ansible-role-docker.git"
+    "url": "git+https://github.com/dockpack/base_docker.git"
   },
   "keywords": [
     "ansible",
