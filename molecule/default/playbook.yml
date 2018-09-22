@@ -1,0 +1,16 @@
+---
+# Standards: 0.2
+- hosts: all
+  become: true
+  pre_tasks:
+    - name: remove docker
+      yum:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - docker-latest
+        - docker
+
+  roles:
+    - role: base_epel
+    - role: base_docker

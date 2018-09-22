@@ -24,7 +24,7 @@
     - docker
 
 - name: test if docker is installed
-  command: docker
+  command: docker version
   register: dockerinstalled
   ignore_errors: True
   changed_when: False
@@ -33,6 +33,8 @@
   yum:
     name: python-pip
     state: present
+  tags:
+    - pip
 
 - name: install docker
   become: True
