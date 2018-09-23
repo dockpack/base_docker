@@ -1,7 +1,5 @@
 [![Galaxy](https://img.shields.io/badge/galaxy-dockpack.base__docker-blue.svg?style=flat)](https://galaxy.ansible.com/dockpack/base_docker)[![Build Status](https://api.travis-ci.org/dockpack/base_docker.svg)](https://travis-ci.org/dockpack/base_docker)
 
-=========
-
 ## dockpack.base_docker is a role to install docker.
 
 Requirements
