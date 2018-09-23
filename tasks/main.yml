@@ -55,7 +55,7 @@
   notify:
     - restart docker
 
-- name: create a systemd drop-in directory for the docker service 
+- name: create a systemd drop-in directory for the docker service
   file:
     path: /etc/systemd/system/docker.service.d
     owner: root
