@@ -57,14 +57,27 @@
 
 - name: remove the systemd drop-in file
   file:
-    path: /etc/systemd/system/docker.service.d/http-proxy.conf
+    path: /etc/systemd/docker.service.d
     owner: root
     group: docker
     mode: 0755
-    state: absent
+    state: directory
+  when: docker_http_proxy is defined or docker_https_proxy is defined
   tags:
     - template
-    - abolished
+
+- name: create the proxy config for the docker service
+  when: docker_http_proxy is defined or docker_https_proxy is defined
+  template:
+    src: http-proxy.conf
+    dest: /etc/systemd/docker.service.d/
+    owner: root
+    group: docker
+    mode: 0644
+  notify:
+    - restart docker
+  tags:
+    - template
 
 - name: create service in systemd
   template:
