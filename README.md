@@ -17,6 +17,10 @@ To add additional user to the docker group declare and define
       - vagrant
 
 
+    docker_http_proxy: 'http://proxy:3128'
+    docker_https_proxy: 'http://proxy:3128'
+    docker_no_proxy: 'http://proxy:3128'
+
 Dependencies
 ------------
     []
