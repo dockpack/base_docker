@@ -55,7 +55,7 @@
   notify:
     - restart docker
 
-- name: remove the docker proxy configs
+- name: remove the docker proxy config
   file:
     path: /etc/systemd/docker.service.d/http-proxy.conf
     state: absent
