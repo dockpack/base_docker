@@ -55,6 +55,17 @@
   notify:
     - restart docker
 
+- name: remove the docker proxy configs
+  file:
+    path: "{{ item }}"
+    state: absent
+  when: docker_http_proxy is not defined and docker_https_proxy is not defined
+  with_items:
+    - /etc/systemd/docker.service.d/http-proxy.conf
+    - /etc/sysconfig/docker
+  tags:
+    - template
+
 - name: create the systemd drop-in directory
   file:
     path: /etc/systemd/docker.service.d
