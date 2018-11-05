@@ -1,9 +1,9 @@
 ---
 
-docker_package_name: docker-latest
-docker_package_version: 1.13.1
-pip_docker_version: 2.5.0
-pip_docker_compose_version: 1.15.0
+docker_package_name: docker-ce
+docker_package_version: 18.06.1.ce
+pip_docker_version: 3.5.1
+pip_docker_compose_version: 1.23.1
 
 repository_registry: repository:5000
 docker_graph_dir: /var/lib/docker
@@ -13,3 +13,15 @@ docker_engine:
   key_server: ha.pool.sks-keyservers.net
   storagedriver: devicemapper
   insecure_registry: 172.30.0.0/16
+
+docker_legacy:
+  - docker
+  - docker-client
+  - docker-client-latest
+  - docker-common
+  - docker-latest
+  - docker-latest-logrotate
+  - docker-logrotate
+  - docker-selinux
+  - docker-engine-selinux
+  - docker-engine

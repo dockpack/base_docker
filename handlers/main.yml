@@ -5,9 +5,14 @@
     name: docker
     state: started
     enabled: True
-    daemon_reload: true
+    daemon_reload: True
   become: True
-  when: ansible_connection != 'docker'
+
+- name: stop docker
+  systemd:
+    name: docker
+    state: stopped
+  become: True
 
 - name: restart docker
   become: True
@@ -15,5 +20,10 @@
     name: docker
     state: restarted
     enabled: True
-    daemon_reload: true
-  when: ansible_connection != 'docker'
+    daemon_reload: True
+
+# Handler showing how to clean yum metadata cache
+- name: yum-clean-metadata
+  command: yum clean metadata
+  args:
+    warn: no
