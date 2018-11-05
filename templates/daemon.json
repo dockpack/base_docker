@@ -8,7 +8,7 @@
     "storage-driver": "{{ docker_engine.storagedriver }}",
     "data-root": "{{ docker_graph_dir }}",
     "insecure-registries": [
-      {% if repository_registry is defined and s != "" %}
+      {% if repository_registry is defined and repository_registry!= "" %}
       "{{ repository_registry }}",
       {% endif %}
       "{{ docker_engine.insecure_registry }}"
