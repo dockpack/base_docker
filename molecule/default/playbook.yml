@@ -5,11 +5,10 @@
   pre_tasks:
     - name: remove docker
       yum:
-        name: "{{ item }}"
         state: absent
-      with_items:
-        - docker-latest
-        - docker
+        name:
+          - docker-latest
+          - docker
 
   roles:
     - role: base_epel
