@@ -4,13 +4,6 @@
     "fixed-cidr": "10.20.0.0/16",
     "fixed-cidr-v6": "2001:db8::/64",
     "mtu": 1500,
-    "default-gateway": "10.20.1.1",
-    "storage-driver": "{{ docker_engine.storagedriver }}",
-    "data-root": "{{ docker_graph_dir }}",
-    "insecure-registries": [
-      {% if repository_registry is defined and repository_registry!= "" %}
-      "{{ repository_registry }}",
-      {% endif %}
-      "{{ docker_engine.insecure_registry }}"
-    ]
+    "default-gateway": "10.20.1.1"
 }
+
