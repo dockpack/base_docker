@@ -11,7 +11,7 @@ Type=notify
 # exists and systemd currently does not support the cgroup feature set required
 # for containers run by docker
 ExecStart=/usr/bin/dockerd \
-{% if docker_package_version == '1.13.1' %}--graph={% else %}--data-root={{ docker_graph_dir }}{% endif %} \
+{% if docker_package_version == '1.13.1' %}--graph={% else %}--data-root={% endif %}{{ docker_graph_dir }} \
 --exec-opt native.cgroupdriver=systemd \
 --add-runtime docker-runc=/usr/libexec/docker/docker-runc-current \
 --userland-proxy-path=/usr/libexec/docker/docker-proxy-current \
