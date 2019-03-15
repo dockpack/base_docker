@@ -10,7 +10,13 @@ Type=notify
 # the default is not to use systemd for cgroups because the delegate issues still
 # exists and systemd currently does not support the cgroup feature set required
 # for containers run by docker
-ExecStart=/usr/bin/dockerd
+ExecStart=/usr/bin/dockerd \
+--data-root={{ docker_graph_dir }} \
+--exec-opt native.cgroupdriver=systemd \
+--add-runtime docker-runc=/usr/libexec/docker/docker-runc-current \
+--userland-proxy-path=/usr/libexec/docker/docker-proxy-current \
+--default-runtime=docker-runc \
+--selinux-enabled -s "{{ docker_engine.storagedriver }}" --insecure-registry "{{ docker_engine.insecure_registry }}" {% if repository_registry is defined %}--insecure-registry={{ repository_registry }}{% endif %}
 
 ExecReload=/bin/kill -s HUP $MAINPID
 # Having non-zero Limit*s causes performance problems due to accounting overhead

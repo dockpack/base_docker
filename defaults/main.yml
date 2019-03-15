@@ -5,7 +5,7 @@ docker_package_version: 18.06.1.ce
 pip_docker_version: 3.5.1
 pip_docker_compose_version: 1.23.1
 
-repository_registry: repository:5000
+
 docker_graph_dir: /var/lib/docker
 
 docker_engine:
@@ -13,6 +13,9 @@ docker_engine:
   key_server: ha.pool.sks-keyservers.net
   storagedriver: devicemapper
   insecure_registry: 172.30.0.0/16
+
+# Define an additional v1 registry
+# repository_registry: repository.example.com:5000
 
 docker_legacy:
   - docker
@@ -22,6 +25,4 @@ docker_legacy:
   - docker-latest
   - docker-latest-logrotate
   - docker-logrotate
-  - docker-selinux
-  - docker-engine-selinux
   - docker-engine
