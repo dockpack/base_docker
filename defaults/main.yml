@@ -1,7 +1,15 @@
 ---
 
-docker_package_name: docker-ce
-docker_package_version: 18.06.1.ce
+# docker 1.13.1 is the supported package for EL7.
+# docker-ce is not supported, but newer.
+# rhel8 will not support either, but podman/cri-o/runC
+
+docker_package_name: docker
+docker_package_version: 1.13.1
+
+# docker_package_name: docker-ce
+# docker_package_version: 18.06.1.ce
+
 pip_docker_version: 3.5.1
 pip_docker_compose_version: 1.23.1
 
@@ -17,11 +25,9 @@ docker_engine:
 # Define an additional v1 registry
 # repository_registry: repository.example.com:5000
 
+# docker-latest is deprecated.
 docker_legacy:
-  - docker
-  - docker-client
   - docker-client-latest
-  - docker-common
   - docker-latest
   - docker-latest-logrotate
   - docker-logrotate
