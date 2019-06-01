@@ -7,6 +7,10 @@
       - yum-utils
       - device-mapper-persistent-data
       - lvm2
+  register: download_rpms
+  until: download_rpms is success
+  retries: 10
+  delay: 2
   tags:
     - yum
 
@@ -17,7 +21,7 @@
     description: Docker Community Edition Repository
     state: present
     baseurl: 'https://download.docker.com/linux/centos/7/$basearch/stable'
-    gpgcheck: True
+    gpgcheck: true
     gpgkey: 'https://download.docker.com/linux/centos/gpg'
   notify: yum-clean-metadata
   tags:
@@ -36,8 +40,8 @@
     name: "{{ item }}"
     value: 1
     state: present
-    reload: True
-    ignoreerrors: True
+    reload: true
+    ignoreerrors: true
   with_items:
     - net.ipv4.ip_forward
     - bridge-nf-call-iptables
@@ -49,7 +53,7 @@
   group:
     name: docker
     state: present
-    system: True
+    system: true
   tags:
     - docker
 
@@ -57,14 +61,18 @@
   yum:
     name: python-pip
     state: present
+  register: download_pip
+  until: download_pip is success
+  retries: 10
+  delay: 2
   tags:
     - pip
 
 - name: uninstall docker client for python
-  become: True
+  become: true
   shell: 'pip uninstall -y docker-py || /bin/true'
-  no_log: True
-  ignore_errors: True
+  no_log: true
+  ignore_errors: true
   changed_when: False
   tags:
     - skip_ansible_lint
@@ -75,6 +83,10 @@
     name: docker
     state: present
     version: "{{ pip_docker_version }}"
+  register: pip_install
+  until: pip_install is success
+  retries: 10
+  delay: 2
   changed_when: False  # workaround for bug in pip:
   tags:
     - python
@@ -84,24 +96,32 @@
     name: docker-compose
     state: present
     version: "{{ pip_docker_compose_version }}"
+  register: pip_install
+  until: pip_install is success
+  retries: 10
+  delay: 2
   changed_when: False  # workaround for bug in pip:
   tags:
     - docker
 
 - name: install docker engine
-  become: True
+  become: true
   yum:
     name: "{{ docker_package_name }}-{{ docker_package_version }}"
     state: present
-    update_cache: True
+    update_cache: true
+  register: yum_install
+  until: yum_install is success
+  retries: 10
+  delay: 2
   tags:
     - yum
 
 - name: enable docker
   systemd:
     name: docker
-    enabled: True
-    daemon_reload: True
+    enabled: true
+    daemon_reload: true
   notify:
     - start docker
   tags:
@@ -115,7 +135,7 @@
     owner: root
     group: docker
     mode: 0644
-    force: True
+    force: true
   notify:
     - restart docker
   tags:
@@ -157,7 +177,7 @@
   template:
     src: docker.service
     dest: /usr/lib/systemd/system/docker.service
-    force: True
+    force: true
   register: unit
   notify:
     - restart docker
@@ -184,7 +204,7 @@
   user:
     name: "{{ item }}"
     groups: docker
-    append: True
+    append: true
   when: docker_users is defined
   with_items: "{{ docker_users }}"
   tags:
