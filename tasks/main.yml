@@ -175,7 +175,7 @@
 
 - name: create service in systemd
   template:
-    src: docker.service
+    src: "{{ docker_package_name }}.service"
     dest: /usr/lib/systemd/system/docker.service
     force: true
   register: unit
