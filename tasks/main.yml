@@ -178,6 +178,7 @@
     src: "{{ docker_package_name }}.service"
     dest: /usr/lib/systemd/system/docker.service
     force: true
+    mode: 0644
   register: unit
   notify:
     - restart docker
@@ -188,11 +189,13 @@
   file:
     path: /etc/docker
     state: directory
+    mode: 0755
 
 - name: install daemon options
   template:
     src: daemon.json
     dest: /etc/docker/daemon.json
+    mode: 0644
   notify:
     - restart docker
   tags:
