@@ -1,5 +1,10 @@
+# these python extensions are for testing
 tox
-molecule==2.22
-docker
+sh==1.12.14
+molecule
+molecule-vagrant
+yamllint
+ansible-lint
 python-vagrant
 anyconfig>=0.10.0 # not directly required, pinned by Snyk to avoid a vulnerability
+
