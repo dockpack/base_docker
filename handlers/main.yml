@@ -4,26 +4,26 @@
   systemd:
     name: docker
     state: started
-    enabled: True
-    daemon_reload: True
-  become: True
+    enabled: true
+    daemon_reload: true
+  become: true
 
 - name: stop docker
   systemd:
     name: docker
     state: stopped
-  become: True
+  become: true
 
 - name: restart docker
-  become: True
+  become: true
   systemd:
     name: docker
     state: restarted
-    enabled: True
-    daemon_reload: True
+    enabled: true
+    daemon_reload: true
 
 # Handler showing how to clean yum metadata cache
 - name: yum-clean-metadata
   command: yum clean metadata
   args:
-    warn: no
+    warn: false

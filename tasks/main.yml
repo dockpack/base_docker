@@ -73,7 +73,7 @@
   shell: 'pip uninstall -y docker-py || /bin/true'
   no_log: true
   ignore_errors: true
-  changed_when: False
+  changed_when: false
   tags:
     - skip_ansible_lint
     - uninstall
@@ -87,7 +87,7 @@
   until: pip_install is success
   retries: 10
   delay: 2
-  changed_when: False  # workaround for bug in pip:
+  changed_when: false  # workaround for bug in pip:
   tags:
     - python
 
@@ -100,7 +100,7 @@
   until: pip_install is success
   retries: 10
   delay: 2
-  changed_when: False  # workaround for bug in pip:
+  changed_when: false  # workaround for bug in pip:
   tags:
     - docker
 
