@@ -1,5 +1,4 @@
 {
-    "log-driver": "journald",
     "bip": "10.20.0.1/16",
     "fixed-cidr": "10.20.0.0/16",
     "fixed-cidr-v6": "2001:db8::/64",
