@@ -78,6 +78,18 @@
     - skip_ansible_lint
     - uninstall
 
+- name: install
+  pip:
+    name: certifi
+    version: "{{ pip_certifi_version }}"
+    state: present
+
+- name: install requests
+  pip:
+    name: requests
+    state: present
+    version: "{{ pip_requests_version }}"
+
 - name: install docker client for python
   pip:
     name: docker

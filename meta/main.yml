@@ -1,6 +1,8 @@
 ---
 # Standards: 0.2
 galaxy_info:
+  role_name: base_docker
+  namespace: dockpack
   author: ferharty and bbaassssiiee
   description: Yet another Docker role.
   company: dockpack
@@ -12,6 +14,7 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
+        - 6
         - 7
   galaxy_tags:
     - docker
