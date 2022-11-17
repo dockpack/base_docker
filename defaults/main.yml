@@ -10,7 +10,7 @@ docker_package_version: '1.13.1'
 # docker_package_name: docker-ce
 # docker_package_version: 18.06.1.ce
 pip_requests_version: '2.27.1'
-pip_certifi_version:  '2020.4.5.1'
+pip_certifi_version: '2020.4.5.1'
 pip_docker_version: '3.5.1'
 pip_docker_compose_version: '1.23.1'
 
