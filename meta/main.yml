@@ -21,3 +21,4 @@ galaxy_info:
     - system
     - development
     - containers
+  dependencies: []

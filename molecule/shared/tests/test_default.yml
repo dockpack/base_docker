@@ -1,0 +1,20 @@
+---
+service:
+  docker:
+    enabled: true
+    running: true
+group:
+  docker:
+    exists: true
+mount:
+  /dev/shm:
+    exists: true
+    opts:
+      - rw
+      - nosuid
+      - nodev
+    source: tmpfs
+    filesystem: tmpfs
+interface:
+  docker0:
+    exists: true
