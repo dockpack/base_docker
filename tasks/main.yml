@@ -213,7 +213,8 @@
   tags:
     - template
 
-- meta: flush_handlers
+- name: Flush handlers
+  meta: flush_handlers
 
 - name: add any docker_users to docker group
   user:
